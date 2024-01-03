@@ -34,7 +34,7 @@ public class ConsultaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Consulta>> listar(@PageableDefault(size = 30, sort = { "nome" }) Pageable paginacao) {
+    public ResponseEntity<Page<Consulta>> listar(@PageableDefault(size = 30, sort = { "id" }) Pageable paginacao) {
         var consultas = repository.findAll(paginacao);
         return ResponseEntity.ok(consultas);
     }
