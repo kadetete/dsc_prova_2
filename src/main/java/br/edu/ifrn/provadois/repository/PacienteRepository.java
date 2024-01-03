@@ -6,4 +6,5 @@ import br.edu.ifrn.provadois.domain.paciente.Paciente;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long>{
     
+    boolean existsByCpf(String cpf);
 }

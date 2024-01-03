@@ -43,6 +43,9 @@ public class PacienteController {
     @Transactional
     public ResponseEntity<Object> cadastrar(@RequestBody @Valid Paciente paciente,
             UriComponentsBuilder uriBuilder) {
+        if (repository.existsByCpf(paciente.getCpf())) {
+            return ResponseEntity.badRequest().body("CPF já cadastrado");
+        }
         Paciente pacienteLocal = repository.save(paciente);
         var uri = uriBuilder.path("/paciente/{id}").buildAndExpand(pacienteLocal.getId()).toUri();
         return ResponseEntity.created(uri).build();
